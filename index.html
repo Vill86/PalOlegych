@@ -59,31 +59,6 @@
             height: auto;
         }
 
-        /* ========== DECORATIVE NAILS ========== */
-        .nail {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
-            border-radius: 50%;
-            box-shadow: 
-                inset 1px 1px 2px rgba(255,255,255,0.3),
-                1px 1px 3px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-
-        .nail::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 3px;
-            height: 3px;
-            background: rgba(255,255,255,0.5);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-        }
-
         /* ========== HEADER ========== */
         .header {
             position: fixed;
@@ -236,10 +211,10 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
             padding-top: 80px;
-            background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-medium) 100%);
         }
 
         .hero-bg {
@@ -249,22 +224,13 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
-            opacity: 0.5;
         }
 
-        .hero-wood-frame {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .hero-bg img {
             width: 100%;
             height: 100%;
-            z-index: 1;
-            background-image: 
-                linear-gradient(90deg, transparent 95%, rgba(139, 90, 43, 0.2) 95%, rgba(139, 90, 43, 0.2) 97%, transparent 97%),
-                linear-gradient(0deg, transparent 95%, rgba(139, 90, 43, 0.2) 95%, rgba(139, 90, 43, 0.2) 97%, transparent 97%);
-            background-size: 100px 100px;
-            pointer-events: none;
+            object-fit: cover;
+            object-position: center;
         }
 
         .hero-overlay {
@@ -274,26 +240,26 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(135deg, 
-                rgba(21, 101, 192, 0.7) 0%, 
-                rgba(255, 107, 0, 0.6) 50%, 
-                rgba(21, 101, 192, 0.7) 100%);
-            z-index: 2;
+                rgba(21, 101, 192, 0.8) 0%, 
+                rgba(255, 107, 0, 0.7) 50%, 
+                rgba(21, 101, 192, 0.8) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
-            z-index: 3;
-            max-width: 1400px;
+            z-index: 2;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 30px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            text-align: center;
+            width: 100%;
         }
 
         .hero-text {
             color: var(--white);
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .hero-badge {
@@ -310,11 +276,11 @@
         }
 
         .hero-title {
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-size: clamp(2.2rem, 5vw, 4rem);
             font-weight: 900;
             margin-bottom: 20px;
             line-height: 1.2;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
         }
 
         .hero-title span {
@@ -323,7 +289,7 @@
         }
 
         .hero-subtitle {
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
             margin-bottom: 35px;
             opacity: 0.98;
             line-height: 1.6;
@@ -334,6 +300,7 @@
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn-primary {
@@ -377,44 +344,6 @@
         .btn-secondary:hover {
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.9);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-image-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-            border: 8px solid var(--white);
-            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            display: block;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-image-frame {
-            position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
-            border: 4px solid var(--orange);
-            border-radius: 25px;
-            pointer-events: none;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
         }
 
         /* ========== SECTION STYLES ========== */
@@ -474,36 +403,6 @@
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
-        }
-
-        /* Wood plank decoration */
-        .wood-plank {
-            position: absolute;
-            height: 60px;
-            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
-            border: 3px solid var(--wood-dark);
-            border-radius: 5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
-
-        .wood-plank::before,
-        .wood-plank::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
-            border-radius: 50%;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .wood-plank::before {
-            left: 15px;
-        }
-
-        .wood-plank::after {
-            right: 15px;
         }
 
         /* ========== ABOUT ========== */
@@ -1190,15 +1089,6 @@
 
         /* ========== RESPONSIVE ========== */
         @media (max-width: 1200px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1288,6 +1178,26 @@
             .contact-form {
                 padding: 25px;
             }
+
+            .hero-title {
+                font-size: clamp(1.8rem, 6vw, 2.8rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(0.95rem, 3vw, 1.1rem);
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1312,12 +1222,6 @@
             .hero-badge {
                 font-size: 0.8rem;
                 padding: 8px 15px;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                padding: 14px 25px;
-                font-size: 0.95rem;
             }
 
             .about-stats {
@@ -1385,8 +1289,9 @@
 
     <!-- ========== HERO ========== -->
     <section class="hero" id="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-wood-frame"></div>
+        <div class="hero-bg">
+            <img src="worker.jpg" alt="Профессиональный строитель в оранжевом жилете с молотком">
+        </div>
         <div class="hero-overlay"></div>
         
         <div class="hero-content">
@@ -1403,12 +1308,6 @@
                         <i class="fas fa-tools"></i>
                         Наши услуги
                     </a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-image-container">
-                   <img src="worker.jpg" alt="Профессиональный строитель в оранжевом жилете с молотком">
-                    <div class="hero-image-frame"></div>
                 </div>
             </div>
         </div>
