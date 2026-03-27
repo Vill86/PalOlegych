@@ -1,1 +1,1944 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ПалОлегыч — строительная компания. Профессиональный ремонт и строительство с душой и юмором!">
+    <title>ПалОлегыч — Строим так, что соседи завидуют!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            --orange: #FF6B00;
+            --orange-dark: #E65100;
+            --orange-light: #FF9800;
+            --blue: #1565C0;
+            --blue-dark: #0D47A1;
+            --wood-light: #F4D4A8;
+            --wood-medium: #DEB887;
+            --wood-dark: #C19A6B;
+            --osb-bg: #E8D5B7;
+            --nail-gray: #4A4A4A;
+            --white: #FFFFFF;
+            --text-dark: #2C1810;
+            --text-light: #5D4E37;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
 
+        /* ========== RESET & BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: var(--text-dark);
+            background-color: var(--osb-bg);
+            background-image: 
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 50px,
+                    rgba(139, 90, 43, 0.03) 50px,
+                    rgba(139, 90, 43, 0.03) 51px
+                );
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* ========== DECORATIVE NAILS ========== */
+        .nail {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+            box-shadow: 
+                inset 1px 1px 2px rgba(255,255,255,0.3),
+                1px 1px 3px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .nail::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3px;
+            height: 3px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: var(--transition);
+            border-bottom: 4px solid var(--orange);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='%23DEB887'/%3E%3Cpath d='M0 0h100v100H0z' fill='none' stroke='%23C19A6B' stroke-width='0.5'/%3E%3C/svg%3E");
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .header.scrolled {
+            background: linear-gradient(135deg, var(--wood-medium), var(--wood-dark));
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.4rem;
+            box-shadow: 0 3px 10px rgba(255, 107, 0, 0.4);
+            border: 2px solid var(--white);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--orange);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--orange-dark);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-phone {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.4);
+            border: 2px solid var(--white);
+        }
+
+        .header-phone:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: var(--blue);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 3px 10px rgba(21, 101, 192, 0.4);
+        }
+
+        .mobile-menu-btn:hover {
+            background: var(--blue-dark);
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+            background: linear-gradient(135deg, var(--wood-light) 0%, var(--wood-medium) 100%);
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-wood-frame {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image: 
+                linear-gradient(90deg, transparent 95%, rgba(139, 90, 43, 0.2) 95%, rgba(139, 90, 43, 0.2) 97%, transparent 97%),
+                linear-gradient(0deg, transparent 95%, rgba(139, 90, 43, 0.2) 95%, rgba(139, 90, 43, 0.2) 97%, transparent 97%);
+            background-size: 100px 100px;
+            pointer-events: none;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(21, 101, 192, 0.7) 0%, 
+                rgba(255, 107, 0, 0.6) 50%, 
+                rgba(21, 101, 192, 0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-text {
+            color: var(--white);
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-title span {
+            color: var(--orange-light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            margin-bottom: 35px;
+            opacity: 0.98;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            padding: 16px 35px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+            border: 3px solid var(--white);
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.6);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            padding: 16px 35px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            border: 8px solid var(--white);
+            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            display: block;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-image-frame {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 4px solid var(--orange);
+            border-radius: 25px;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* ========== SECTION STYLES ========== */
+        .section {
+            padding: 100px 30px;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+            box-shadow: 
+                inset 2px 2px 3px rgba(255,255,255,0.3),
+                2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 12px;
+            height: 12px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+            box-shadow: 
+                inset 2px 2px 3px rgba(255,255,255,0.3),
+                2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--blue-dark);
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 60px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Wood plank decoration */
+        .wood-plank {
+            position: absolute;
+            height: 60px;
+            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
+            border: 3px solid var(--wood-dark);
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .wood-plank::before,
+        .wood-plank::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .wood-plank::before {
+            left: 15px;
+        }
+
+        .wood-plank::after {
+            right: 15px;
+        }
+
+        /* ========== ABOUT ========== */
+        .about {
+            background: linear-gradient(135deg, var(--wood-medium), var(--wood-light));
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow-hover);
+            border: 6px solid var(--white);
+        }
+
+        .about-experience {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            padding: 25px 35px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
+            border: 3px solid var(--white);
+        }
+
+        .about-experience .number {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .about-experience .text {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: var(--blue-dark);
+            margin-bottom: 20px;
+            font-weight: 900;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+        }
+
+        .about-content .lead {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-weight: 600;
+        }
+
+        .about-content p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .about-stat {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--white), var(--wood-light));
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 3px solid var(--wood-medium);
+        }
+
+        .about-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-stat .number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--orange-dark);
+        }
+
+        .about-stat .label {
+            color: var(--text-light);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        /* ========== SERVICES ========== */
+        .services {
+            background: linear-gradient(135deg, var(--osb-bg), var(--wood-light));
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--white), var(--wood-light));
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 3px solid var(--wood-medium);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 8px;
+            height: 8px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--orange);
+        }
+
+        .service-image {
+            height: 200px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            margin-top: -50px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(255, 107, 0, 0.4);
+            border: 2px solid var(--white);
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+        }
+
+        .service-desc {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--orange-light), var(--orange));
+            color: var(--white);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(255, 107, 0, 0.3);
+        }
+
+        /* ========== REVIEWS ========== */
+        .reviews {
+            background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reviews::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .reviews .section-title,
+        .reviews .section-subtitle {
+            color: var(--white);
+            position: relative;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            position: relative;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .review-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--orange-light);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .review-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+            border: 3px solid var(--white);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .review-author {
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .review-stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        .review-text {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ========== CONTACTS ========== */
+        .contacts {
+            background: linear-gradient(135deg, var(--wood-light), var(--osb-bg));
+        }
+
+        .contacts-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--white), var(--wood-light));
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 3px solid var(--wood-medium);
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--orange);
+        }
+
+        .contact-icon {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(255, 107, 0, 0.4);
+            border: 2px solid var(--white);
+        }
+
+        .contact-details h4 {
+            font-size: 1.1rem;
+            color: var(--blue-dark);
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .contact-details p,
+        .contact-details a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            color: var(--orange-dark);
+        }
+
+        /* ========== FORM ========== */
+        .contact-form {
+            background: linear-gradient(135deg, var(--white), var(--wood-light));
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--wood-medium);
+            position: relative;
+        }
+
+        .contact-form::before,
+        .contact-form::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #8B8B8B, #4A4A4A);
+            border-radius: 50%;
+            top: 15px;
+        }
+
+        .contact-form::before {
+            left: 15px;
+        }
+
+        .contact-form::after {
+            right: 15px;
+        }
+
+        .form-title {
+            font-size: 1.6rem;
+            color: var(--blue-dark);
+            margin-bottom: 30px;
+            font-weight: 800;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 3px solid var(--wood-medium);
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--orange);
+            box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: #EF4444;
+        }
+
+        .error-message {
+            color: #EF4444;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+            color: var(--white);
+            border: 3px solid var(--white);
+            padding: 18px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.5);
+        }
+
+        .submit-btn:disabled {
+            background: var(--wood-medium);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .form-success {
+            text-align: center;
+            padding: 40px;
+            display: none;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .form-success i {
+            font-size: 5rem;
+            color: #22C55E;
+            margin-bottom: 20px;
+        }
+
+        .form-success h3 {
+            color: var(--blue-dark);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .form-success p {
+            color: var(--text-light);
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            background: linear-gradient(135deg, var(--blue-dark), var(--blue));
+            color: var(--white);
+            padding: 60px 30px 30px;
+            position: relative;
+            border-top: 6px solid var(--orange);
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 6px;
+            background: linear-gradient(90deg, var(--orange), var(--orange-light), var(--orange));
+            border-radius: 3px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .logo-icon {
+            background: var(--orange);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .footer-social a:hover {
+            background: var(--orange);
+            transform: translateY(-3px);
+            border-color: var(--white);
+        }
+
+        .footer-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--orange-light);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .footer-copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        .footer-slogan {
+            color: var(--orange-light);
+            font-weight: 700;
+        }
+
+        /* ========== SCROLL ANIMATIONS ========== */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.7s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== MOBILE MENU ========== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--wood-light), var(--wood-medium));
+            padding: 20px;
+            box-shadow: var(--shadow);
+            z-index: 999;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: var(--transition);
+            border-bottom: 4px solid var(--orange);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu .nav-links {
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .mobile-menu .nav-links a {
+            display: block;
+            padding: 15px;
+            border-bottom: 2px solid var(--wood-medium);
+            font-size: 1rem;
+        }
+
+        .mobile-menu .header-phone {
+            margin-top: 15px;
+            justify-content: center;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image {
+                display: none;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reviews-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .contacts-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .header-phone {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .mobile-menu .header-phone {
+                display: flex;
+            }
+
+            .section {
+                padding: 70px 20px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+
+            .about-experience {
+                right: 10px;
+                bottom: -10px;
+                padding: 15px 20px;
+            }
+
+            .about-experience .number {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-form {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 10px 15px;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .logo-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                padding-top: 70px;
+            }
+
+            .hero-badge {
+                font-size: 0.8rem;
+                padding: 8px 15px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 14px 25px;
+                font-size: 0.95rem;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stat {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                text-align: left;
+            }
+
+            .contact-item {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ========== HEADER ========== -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🔨</div>
+                ПалОлегыч
+            </a>
+            
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="#hero">Главная</a></li>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+
+            <a href="tel:+79991234567" class="header-phone">
+                <i class="fas fa-phone"></i>
+                +7 (999) 123-45-67
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <ul class="nav-links">
+                <li><a href="#hero">Главная</a></li>
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#reviews">Отзывы</a></li>
+                <li><a href="#contacts">Контакты</a></li>
+            </ul>
+            <a href="tel:+79991234567" class="header-phone">
+                <i class="fas fa-phone"></i>
+                +7 (999) 123-45-67
+            </a>
+        </div>
+    </header>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-wood-frame"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">🏆 №1 в регионе по отзывам клиентов</span>
+                <h1 class="hero-title">ПалОлегыч — <span>Строим так</span>, что соседи завидуют!</h1>
+                <p class="hero-subtitle">Ремонт, от которого ваша жена перестанет пилить (наконец-то!). 10 лет опыта, 127 домов построено, и ни одного недовольного клиента!</p>
+                <div class="hero-buttons">
+                    <a href="#contacts" class="btn-primary">
+                        <i class="fas fa-calculator"></i>
+                        Бесплатный расчёт
+                    </a>
+                    <a href="#services" class="btn-secondary">
+                        <i class="fas fa-tools"></i>
+                        Наши услуги
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=700&fit=crop" alt="Профессиональный строитель в оранжевом жилете с молотком">
+                    <div class="hero-image-frame"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image animate-on-scroll">
+                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&h=600&fit=crop" alt="Наша команда">
+                    <div class="about-experience">
+                        <div class="number">10+</div>
+                        <div class="text">лет опыта</div>
+                    </div>
+                </div>
+                
+                <div class="about-content animate-on-scroll">
+                    <h2>Знакомьтесь — ПалОлегыч!</h2>
+                    <p class="lead">Мы — команда профессионалов, которые любят своё дело и ненавидят халтуру!</p>
+                    <p>За 10 лет работы мы поняли главное: хороший ремонт — это когда хозяйка улыбается, а хозяин не плачет над сметой. Работаем честно, без "сюрпризов" и "ой, а мы не знали". Наша бригада — это семья, и ваш дом мы будем строить как для себя!</p>
+                    <p>Каждый проект для нас — это не просто работа, а возможность создать что-то особенное. Мы не уходим, пока вы не скажете "ВАУ!"</p>
+                    
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <div class="number">127</div>
+                            <div class="label">домов построено</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="number">340</div>
+                            <div class="label">ремонтов</div>
+                        </div>
+                        <div class="about-stat">
+                            <div class="number">100%</div>
+                            <div class="label">довольных</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="section services" id="services">
+        <div class="container">
+            <h2 class="section-title">Наши услуги</h2>
+            <p class="section-subtitle">Делаем всё: от замены розетки до строительства особняка. И всё — с душой! 🏡</p>
+            
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=600&h=400&fit=crop" alt="Капитальный ремонт">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">🏡</div>
+                        <h3 class="service-title">Капитальный ремонт</h3>
+                        <p class="service-desc">Превращаем "бабушкин вариант" в современное жильё. Штробим, выравниваем, красим — в общем, делаем красиво!</p>
+                        <span class="service-price">от 5 000 руб/м²</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop" alt="Строительство домов">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">🧱</div>
+                        <h3 class="service-title">Строительство домов</h3>
+                        <p class="service-desc">Дом вашей мечты — от фундамента до крыши. Строим так, что даже тёща останется довольна (проверено)!</p>
+                        <span class="service-price">от 3 500 000 руб</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&h=400&fit=crop" alt="Отделочные работы">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">🎨</div>
+                        <h3 class="service-title">Отделочные работы</h3>
+                        <p class="service-desc">Шпаклёвка, покраска, обои — делаем стены гладкими, как щёчки младенца. Ну, почти!</p>
+                        <span class="service-price">от 1 500 руб/м²</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=400&fit=crop" alt="Сантехника">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">💧</div>
+                        <h3 class="service-title">Сантехника</h3>
+                        <p class="service-desc">Трубы, краны, унитазы — всё чиним и ставим. Больше никаких "само потечёт" и "подкручу позже"!</p>
+                        <span class="service-price">от 2 000 руб</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop" alt="Электрика">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">⚡</div>
+                        <h3 class="service-title">Электрика</h3>
+                        <p class="service-desc">Розетки там, где нужно, а не там, где придумал застройщик. Без искр и фокусов — всё по ГОСТу!</p>
+                        <span class="service-price">от 1 500 руб</span>
+                    </div>
+                </div>
+
+                <div class="service-card animate-on-scroll">
+                    <div class="service-image">
+                        <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&h=400&fit=crop" alt="Окна и двери">
+                    </div>
+                    <div class="service-content">
+                        <div class="service-icon">🪟</div>
+                        <h3 class="service-title">Окна и двери</h3>
+                        <p class="service-desc">Меняем окна и двери аккуратно. Соседи даже не поймут, как вы успели — так тихо работаем!</p>
+                        <span class="service-price">от 5 000 руб</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== REVIEWS ========== -->
+    <section class="section reviews" id="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы наших клиентов</h2>
+            <p class="section-subtitle">Настоящие отзывы от настоящих людей. Без накруток и ботов! ⭐</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar">ИП</div>
+                        <div>
+                            <div class="review-author">Иван Петрович</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Жена сказала — или ремонт, или развод. ПалОлегыч спас мой брак! Сделали всё за 3 недели, теперь соседи заходят 'попить воды' и не уходят полчаса."</p>
+                </div>
+
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar">СВ</div>
+                        <div>
+                            <div class="review-author">Светлана</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Девочки, если муж не может решиться на ремонт — звоните ПалОлегычу! Приехал, показал, рассказал — муж согласился на следующий день. Класс!"</p>
+                </div>
+
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar">АК</div>
+                        <div>
+                            <div class="review-author">Андрей</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Думал, будет как обычно — 'завтра', 'чуть подорожало'. А нет — всё по смете, всё в срок. Даже руку пожал на прощание. Теперь только к ним!"</p>
+                </div>
+
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="review-avatar">МД</div>
+                        <div>
+                            <div class="review-author">Марина и Дмитрий</div>
+                            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                        </div>
+                    </div>
+                    <p class="review-text">"Построили дом нашей мечты! Внутри — космос, снаружи — конфетка. Детям понравилось, а собаке будку сделали в подарок. Спасибо бригаде!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACTS ========== -->
+    <section class="section contacts" id="contacts">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <p class="section-subtitle">Готовы обсудить ваш проект? Звоните или пишите — мы всегда на связи!</p>
+            
+            <div class="contacts-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Телефон</h4>
+                            <a href="tel:+79991234567">+7 (999) 123-45-67</a>
+                            <p>Звоните с 8:00 до 20:00</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:palolegich@remont.ru">palolegich@remont.ru</a>
+                            <p>Ответим в течение часа</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Режим работы</h4>
+                            <p>Пн-Сб: 8:00 - 20:00</p>
+                            <p>Вс: отдыхаем (тоже люди!)</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item animate-on-scroll">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Адрес офиса</h4>
+                            <p>г. Москва, ул. Строителей, д. 15</p>
+                            <p>Заезжайте на чай! ☕</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form animate-on-scroll">
+                    <h3 class="form-title">Оставьте заявку</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя *</label>
+                            <input type="text" id="name" name="name" placeholder="Как к вам обращаться?">
+                            <span class="error-message">Пожалуйста, введите ваше имя</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Телефон *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+7 (___) ___-__-__">
+                            <span class="error-message">Пожалуйста, введите корректный телефон</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Расскажите о проекте</label>
+                            <textarea id="message" name="message" placeholder="Опишите, что нужно сделать..."></textarea>
+                            <span class="error-message">Пожалуйста, введите сообщение</span>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить заявку
+                        </button>
+                    </form>
+
+                    <div class="form-success" id="formSuccess">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Заявка отправлена!</h3>
+                        <p>Мы свяжемся с вами в ближайшее время. А пока — заварите чай! ☕</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <div class="logo-icon">🔨</div>
+                    ПалОлегыч
+                </a>
+                <p>Профессиональный ремонт и строительство с душой. 10 лет создаём уют в домах наших клиентов!</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Навигация</h4>
+                <ul class="footer-links">
+                    <li><a href="#hero">Главная</a></li>
+                    <li><a href="#about">О компании</a></li>
+                    <li><a href="#services">Услуги</a></li>
+                    <li><a href="#reviews">Отзывы</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Услуги</h4>
+                <ul class="footer-links">
+                    <li><a href="#services">Капитальный ремонт</a></li>
+                    <li><a href="#services">Строительство домов</a></li>
+                    <li><a href="#services">Отделочные работы</a></li>
+                    <li><a href="#services">Сантехника</a></li>
+                    <li><a href="#services">Электрика</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4 class="footer-title">Контакты</h4>
+                <ul class="footer-links">
+                    <li><a href="tel:+79991234567">+7 (999) 123-45-67</a></li>
+                    <li><a href="mailto:palolegich@remont.ru">palolegich@remont.ru</a></li>
+                    <li>г. Москва, ул. Строителей, 15</li>
+                    <li>Пн-Сб: 8:00 - 20:00</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p class="footer-copyright">© 2024 ПалОлегыч. Все права защищены</p>
+            <p class="footer-slogan">🔨 Строим с душой, ремонтируем с умом!</p>
+        </div>
+    </footer>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script>
+        // ========== MOBILE MENU ==========
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // ========== HEADER SCROLL EFFECT ==========
+        const header = document.getElementById('header');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // ========== SMOOTH SCROLL ==========
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerHeight = header.offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // ========== SCROLL ANIMATIONS ==========
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ========== FORM VALIDATION ==========
+        const contactForm = document.getElementById('contactForm');
+        const formSuccess = document.getElementById('formSuccess');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            const name = document.getElementById('name');
+            const phone = document.getElementById('phone');
+            const message = document.getElementById('message');
+
+            // Reset errors
+            document.querySelectorAll('.form-group').forEach(group => {
+                group.classList.remove('error');
+            });
+
+            // Validate name
+            if (name.value.trim().length < 2) {
+                name.parentElement.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate phone
+            const phoneRegex = /^[\d\s\+\-\(\)]{10,}$/;
+            if (!phoneRegex.test(phone.value.replace(/\s/g, ''))) {
+                phone.parentElement.classList.add('error');
+                isValid = false;
+            }
+
+            // Validate message (optional but if filled - min length)
+            if (message.value.trim().length > 0 && message.value.trim().length < 5) {
+                message.parentElement.classList.add('error');
+                isValid = false;
+            }
+
+            if (isValid) {
+                // Show success message
+                contactForm.style.display = 'none';
+                formSuccess.classList.add('show');
+                
+                // Reset form after delay
+                setTimeout(() => {
+                    contactForm.reset();
+                    contactForm.style.display = 'block';
+                    formSuccess.classList.remove('show');
+                }, 5000);
+            }
+        });
+
+        // ========== PHONE INPUT FORMAT ==========
+        const phoneInput = document.getElementById('phone');
+        
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            
+            if (value.length > 0) {
+                if (value[0] === '7' || value[0] === '8') {
+                    value = value.substring(1);
+                }
+                
+                let formatted = '+7';
+                if (value.length > 0) {
+                    formatted += ' (' + value.substring(0, 3);
+                }
+                if (value.length > 3) {
+                    formatted += ') ' + value.substring(3, 6);
+                }
+                if (value.length > 6) {
+                    formatted += '-' + value.substring(6, 8);
+                }
+                if (value.length > 8) {
+                    formatted += '-' + value.substring(8, 10);
+                }
+                
+                e.target.value = formatted;
+            }
+        });
+
+        // ========== COUNTER ANIMATION FOR STATS ==========
+        function animateCounter(element, target) {
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = formatNumber(target);
+                    clearInterval(timer);
+                } else {
+                    element.textContent = formatNumber(Math.floor(current));
+                }
+            }, 16);
+        }
+
+        function formatNumber(num) {
+            if (num >= 1000) {
+                return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            }
+            return num;
+        }
+
+        // Observe stat numbers
+        const statObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.about-stat .number');
+                    statNumbers.forEach(num => {
+                        const text = num.textContent;
+                        if (text.includes('%')) {
+                            // Already has percentage
+                        } else {
+                            const value = parseInt(text);
+                            if (value > 0) {
+                                num.textContent = '0';
+                                animateCounter(num, value);
+                            }
+                        }
+                    });
+                    statObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const aboutStats = document.querySelector('.about-stats');
+        if (aboutStats) {
+            statObserver.observe(aboutStats);
+        }
+    </script>
+</body>
+</html>
